@@ -307,6 +307,6 @@ Released under the [MIT License](LICENSE). See `LICENSE` for details.
 **IntelliX Titans** · Team ID `VTU-QFF-HC-0170` · Tier `Online`
 · Built with ⚛️ Qiskit for the VTU-QFF Hackathon
 
-[⬆ Back to Top](#IntelliX Titans)
+[⬆ Back to Top](#intellix-titans)
 
 </div>
