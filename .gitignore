@@ -1,0 +1,57 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Jupyter
+.ipynb_checkpoints/
+*.nbconvert.ipynb
+profile_default/
+ipython_config.py
+
+# Testing / linting caches
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+.dmypy.json
+
+# Secrets and environment -- NEVER commit these
+.env
+.env.*
+*.pem
+*.key
+secrets.yaml
+credentials.json
+
+# Generated data and large artifacts
+*.h5
+*.hdf5
+*.npy
+*.npz
+*.qasm.out
+data/*.csv
+data/*.pkl
+!data/sample.csv
+
+# Quantum backend output
+backend_provider_*.json
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
