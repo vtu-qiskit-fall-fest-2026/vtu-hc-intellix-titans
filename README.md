@@ -6,7 +6,8 @@
 
 **Track 6: Quantum Applications for Climate Change & Sustainability**
 
-🌐 **Live Interactive App:** [https://vtu-hc-intellix-titans.onrender.com](https://vtu-hc-intellix-titans.onrender.com)
+🌐 **Live Interactive App:** [https://vtu-hc-intellix-titans.onrender.com](https://vtu-hc-intellix-titans.onrender.com)  
+📊 **Presentation (PPT Drive):** [Google Drive Link](https://docs.google.com/presentation/d/1hJKxRSP5YRzauy08wm16lLF99E6wyw1n/edit?usp=sharing&ouid=108748639381612897048&rtpof=true&sd=true)
 
 </div>
 
@@ -21,6 +22,7 @@
 | **Tier** | Online |
 | **Repository** | [vtu-hc-intellix-titans](https://github.com/vtu-qiskit-fall-fest-2026/vtu-hc-intellix-titans.git) |
 | **Live Demo** | [vtu-hc-intellix-titans.onrender.com](https://vtu-hc-intellix-titans.onrender.com) |
+| **Presentation (PPT)** | [Google Drive Link](https://docs.google.com/presentation/d/1hJKxRSP5YRzauy08wm16lLF99E6wyw1n/edit?usp=sharing&ouid=108748639381612897048&rtpof=true&sd=true) |
 | **Organisation** | [vtu-qiskit-fall-fest-2026](https://github.com/vtu-qiskit-fall-fest-2026) |
 | **Event** | VTU-QFF Hackathon — VTU-Qiskit Fall Fest 2026 |
 
@@ -58,6 +60,7 @@ Test and explore the quantum scheduling optimizer directly in your browser:
 - **QAOA Results Tab**: Real-time circuit metrics, measurement sampling histograms, and the quantum-optimized dispatch schedule.
 - **Classical Comparison Tab**: Exact brute-force and greedy baseline comparisons demonstrating quantum advantage within 5% of global optimum.
 - **CO₂ Dashboard Tab**: Detailed carbon emissions pie chart and cost savings calculated against conventional all-diesel generators.
+- 📊 **Official Presentation (PPT)**: [Open in Google Drive](https://docs.google.com/presentation/d/1hJKxRSP5YRzauy08wm16lLF99E6wyw1n/edit?usp=sharing&ouid=108748639381612897048&rtpof=true&sd=true)
 
 ---
 
@@ -319,7 +322,7 @@ git pull --rebase       # update your branch on top of main
 - [x] Repository created and configured
 - [ ] All team members added as **collaborators** and invitations accepted
 - [x] `README.md` updated with project details, problem statement and solution
-- [ ] Team members listed under [Team Members](#-team-members-github-ids)
+- [x] Team members listed under [Team Members](#-team-members-github-ids)
 - [x] `requirements.txt` committed and project runs from a clean clone
 - [x] Code pushed to `main` and the latest `main` builds successfully
 - [x] Notebooks committed with **cleared outputs** (or use `nbstrip`)
@@ -336,6 +339,7 @@ git pull --rebase       # update your branch on top of main
 | ❓ Problem statements, solutions & terms | [Problem Statements, Solutions & Terms](../vtu-hc-guide-problem-and-solution) |
 | 📄 README Guide | [README Guide & Template](../vtu-hc-guide-readme-template) |
 | 🌐 Live Interactive Demo | https://vtu-hc-intellix-titans.onrender.com |
+| 📊 Solution Presentation (PPT Drive) | [Google Drive Presentation](https://docs.google.com/presentation/d/1hJKxRSP5YRzauy08wm16lLF99E6wyw1n/edit?usp=sharing&ouid=108748639381612897048&rtpof=true&sd=true) |
 | ⚛️ Qiskit documentation | https://docs.quantum.ibm.com/ |
 | ⚛️ Qiskit Runtime & primitives | https://quantum.cloud.ibm.com/docs/ |
 | 🧪 Qiskit Aer simulator | https://docs.quantum.ibm.com/guides/simulator |
