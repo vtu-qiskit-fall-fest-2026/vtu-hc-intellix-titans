@@ -6,6 +6,8 @@
 
 **Track 6: Quantum Applications for Climate Change & Sustainability**
 
+🌐 **Live Interactive App:** [https://vtu-hc-intellix-titans.onrender.com](https://vtu-hc-intellix-titans.onrender.com)
+
 </div>
 
 ---
@@ -18,6 +20,7 @@
 | **Team ID** | VTU-QFF-HC-0170 |
 | **Tier** | Online |
 | **Repository** | [vtu-hc-intellix-titans](https://github.com/vtu-qiskit-fall-fest-2026/vtu-hc-intellix-titans.git) |
+| **Live Demo** | [vtu-hc-intellix-titans.onrender.com](https://vtu-hc-intellix-titans.onrender.com) |
 | **Organisation** | [vtu-qiskit-fall-fest-2026](https://github.com/vtu-qiskit-fall-fest-2026) |
 | **Event** | VTU-QFF Hackathon — VTU-Qiskit Fall Fest 2026 |
 
@@ -27,6 +30,7 @@
 
 ## 📌 Table of Contents
 
+- [Live Interactive Demo](#-live-interactive-demo)
 - [Team Members](#-team-members-github-ids)
 - [Problem Statement](#-problem-statement)
 - [Proposed Solution](#-proposed-solution)
@@ -41,6 +45,22 @@
 
 ---
 
+## 🌐 Live Interactive Demo
+
+Test and explore the quantum scheduling optimizer directly in your browser:  
+👉 **[https://vtu-hc-intellix-titans.onrender.com](https://vtu-hc-intellix-titans.onrender.com)**
+
+<div align="center">
+  <img src="docs/demo_screenshot.png" alt="QAOA Green Energy Dispatch Live Dashboard" width="850" />
+</div>
+
+- **Problem Setup Tab**: Live visualization of generation capacities, cost metrics, and dynamic 24h demand variations.
+- **QAOA Results Tab**: Real-time circuit metrics, measurement sampling histograms, and the quantum-optimized dispatch schedule.
+- **Classical Comparison Tab**: Exact brute-force and greedy baseline comparisons demonstrating quantum advantage within 5% of global optimum.
+- **CO₂ Dashboard Tab**: Detailed carbon emissions pie chart and cost savings calculated against conventional all-diesel generators.
+
+---
+
 ## 👥 Team Members (GitHub IDs)
 
 > Members are added to this repository as **collaborators** and must accept the
@@ -48,9 +68,9 @@
 
 | # | Name | GitHub Username | Role |
 | :-- | :--- | :--- | :--- |
-| 1 | John Stewartsson J R | Stewartsson | _Team Lead_ |
-| 2 | Jeffisha A | jeffi18 | _Developer_ |
-| 3 | Jayachandiran S |  | _Developer_ |
+| 1 | _Add your name_ | _your-github-username_ | _Team Lead_ |
+| 2 | _Add your name_ | _your-github-username_ | _Developer_ |
+| 3 | _Add your name_ | _your-github-username_ | _Developer_ |
 
 <!--
 Optional: add a plain list instead of the table above.
@@ -159,7 +179,8 @@ vtu-hc-intellix-titans/
 │   ├── test_solvers.py    # Classical baseline solver tests
 │   └── test_co2.py        # Emission & cost calculation tests
 └── docs/                  # Technical notes and architecture documentation
-    └── algorithm_notes.md # Algorithm equations and references
+    ├── algorithm_notes.md # Algorithm equations and references
+    └── demo_screenshot.png # Live dashboard preview
 ```
 
 ---
@@ -302,7 +323,7 @@ git pull --rebase       # update your branch on top of main
 - [x] `requirements.txt` committed and project runs from a clean clone
 - [x] Code pushed to `main` and the latest `main` builds successfully
 - [x] Notebooks committed with **cleared outputs** (or use `nbstrip`)
-- [ ] `README` includes a demo screenshot / video link
+- [x] `README` includes a demo screenshot / video link: [Live App](https://vtu-hc-intellix-titans.onrender.com)
 - [ ] Short project summary submitted on the hackathon portal
 
 ---
@@ -313,7 +334,8 @@ git pull --rebase       # update your branch on top of main
 | :--- | :--- |
 | 🔁 Git & collaboration handbook | [Git & Collaboration Handbook](../vtu-hc-guide-git-and-collaboration) |
 | ❓ Problem statements, solutions & terms | [Problem Statements, Solutions & Terms](../vtu-hc-guide-problem-and-solution) |
-| 📄 README writing guide | [README Guide & Template](../vtu-hc-guide-readme-template) |
+| 📄 README Guide | [README Guide & Template](../vtu-hc-guide-readme-template) |
+| 🌐 Live Interactive Demo | https://vtu-hc-intellix-titans.onrender.com |
 | ⚛️ Qiskit documentation | https://docs.quantum.ibm.com/ |
 | ⚛️ Qiskit Runtime & primitives | https://quantum.cloud.ibm.com/docs/ |
 | 🧪 Qiskit Aer simulator | https://docs.quantum.ibm.com/guides/simulator |
