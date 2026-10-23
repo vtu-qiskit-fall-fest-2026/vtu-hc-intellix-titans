@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "qaoa-green-dispatch"
+version = "0.1.0"
+description = "Quantum-optimized clean energy scheduling using QAOA (Qiskit)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+  { name = "Intellix Titans", email = "team@example.com" }
+]
+keywords = ["quantum", "QAOA", "Qiskit", "energy", "optimization", "sustainability"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Topic :: Scientific/Engineering :: Physics",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+  "qiskit>=1.0.0",
+  "qiskit-aer>=0.14.0",
+  "qiskit-algorithms>=0.3.0",
+  "numpy>=1.26.0",
+  "scipy>=1.13.0",
+  "matplotlib>=3.8.0",
+  "streamlit>=1.35.0",
+  "plotly>=5.20.0",
+  "pandas>=2.2.0",
+]
+
+[project.optional-dependencies]
+notebook = ["notebook>=7.0.0", "ipykernel>=6.29.0", "pylatexenc>=2.10"]
+dev     = ["pytest>=8.0.0", "pytest-cov>=5.0.0"]
+
+[project.scripts]
+qaoa-dispatch = "src.main:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*", "dashboard*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts   = "-v --tb=short"
