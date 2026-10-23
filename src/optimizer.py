@@ -201,7 +201,7 @@ def compare_solvers(
 
     # Brute force
     try:
-        bf = BruteForceSolver(qubo, params)
+        bf = BruteForceSolver(qubo)
         results["brute_force"] = bf.solve()
         results["brute_force"]["metrics"] = calculate_metrics(
             results["brute_force"]["schedule"], params
@@ -211,7 +211,7 @@ def compare_solvers(
 
     # Greedy
     try:
-        gs = GreedySolver(params)
+        gs = GreedySolver(qubo)
         results["greedy"] = gs.solve()
         results["greedy"]["metrics"] = calculate_metrics(
             results["greedy"]["schedule"], params

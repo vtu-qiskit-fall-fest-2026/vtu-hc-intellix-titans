@@ -21,6 +21,13 @@ from pathlib import Path
 
 import numpy as np
 
+# Ensure utf-8 encoding on Windows consoles
+if hasattr(sys.stdout, "reconfigure"):
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
 # Ensure project root is on sys.path when run directly
 _ROOT = Path(__file__).resolve().parent.parent
 if str(_ROOT) not in sys.path:

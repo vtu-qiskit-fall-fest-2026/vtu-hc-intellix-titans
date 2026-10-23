@@ -126,6 +126,7 @@ def build_qaoa_circuit(
             for k in range(p):
                 param_map[params[p + k]] = betas[k]
             circuit = ansatz.assign_parameters(param_map)
+            circuit.measure_all()
             return circuit, gammas, betas
         except Exception:
             pass  # fall through to manual build
