@@ -30,9 +30,9 @@ def populate_template():
     set_field_value(s1.shapes[8], "QAOA Green Dispatch: Clean Energy Scheduling")
     set_field_value(s1.shapes[9], "Track 6: Climate Change & Sustainability")
     set_field_value(s1.shapes[10], "IntelliX Titans (VTU-QFF-HC-0170)")
-    set_field_value(s1.shapes[11], "Team Lead")
+    set_field_value(s1.shapes[11], "John Stewartsson J R")
     set_field_value(s1.shapes[12], "team@intellix-titans.dev")
-    set_field_value(s1.shapes[13], "Lead  ·  Developer 1  ·  Developer 2")
+    set_field_value(s1.shapes[13], "John Stewartsson J R  ·  Jeffisha A  ·  Jayachandiran S")
     set_field_value(s1.shapes[14], "VTU Affiliated Institution")
     set_field_value(s1.shapes[15], "India")
 
@@ -96,10 +96,8 @@ def populate_template():
     # SLIDE 5: Algorithm & Circuit Design
     # -------------------------------------------------------------
     s5 = prs.slides[4]
-    # Remove placeholder text in Shape 5
     s5.shapes[5].text_frame.clear()
 
-    # Insert circuit diagram in the image area
     circ_img = r"C:\Users\stewa\.gemini\antigravity\scratch\repo-clone\docs\circuit_diagram.png"
     if os.path.exists(circ_img):
         s5.shapes.add_picture(circ_img, Inches(0.55), Inches(1.95), width=Inches(5.0))
@@ -129,10 +127,8 @@ def populate_template():
     # SLIDE 7: Results & Analysis
     # -------------------------------------------------------------
     s7 = prs.slides[6]
-    # Remove placeholder text in Shape 5
     s7.shapes[5].text_frame.clear()
 
-    # Insert results chart in the image area
     res_img = r"C:\Users\stewa\.gemini\antigravity\scratch\repo-clone\docs\results_chart.png"
     if os.path.exists(res_img):
         s7.shapes.add_picture(res_img, Inches(0.55), Inches(1.95), width=Inches(5.0))
@@ -174,26 +170,21 @@ def populate_template():
     # -------------------------------------------------------------
     s10 = prs.slides[9]
 
-    # Shape 3: GITHUB REPOSITORY
     if len(s10.shapes[3].text_frame.paragraphs) > 1:
         p_git = s10.shapes[3].text_frame.paragraphs[1]
         p_git.text = "github.com/vtu-qiskit-fall-fest-2026/vtu-hc-intellix-titans"
         p_git.font.name = "Calibri"
         p_git.font.size = Pt(11)
 
-    # Shape 4: DEMO VIDEO LINK
     if len(s10.shapes[4].text_frame.paragraphs) > 1:
         p_demo = s10.shapes[4].text_frame.paragraphs[1]
         p_demo.text = "https://vtu-hc-intellix-titans.onrender.com"
         p_demo.font.name = "Calibri"
         p_demo.font.size = Pt(11)
 
-    # Save to both repo docs and Downloads
     prs.save(output_path)
     prs.save(downloads_output)
-    print(f"Template populated successfully!")
-    print(f"Repo file     : {output_path}")
-    print(f"Downloads file: {downloads_output}")
+    print("Updated template with real team member names saved!")
 
 if __name__ == "__main__":
     populate_template()
