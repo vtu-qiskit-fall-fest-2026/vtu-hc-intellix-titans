@@ -1,8 +1,10 @@
 <div align="center">
 
-# IntelliX Titans
+# IntelliX Titans — QAOA Green Dispatch
 
 **VTU-QFF-HC-0170** &nbsp;|&nbsp; Tier: **Online**
+
+**Track 6: Quantum Applications for Climate Change & Sustainability**
 
 </div>
 
@@ -66,11 +68,11 @@ who experiences it, and why does it matter. Link to the official problem
 statement from the brief if one applies.
 -->
 
-**Problem:** _Describe the problem in 2–3 sentences._
+**Problem:** Power systems must decide, hour by hour, which energy sources (solar, battery storage, grid supply, diesel backup) to run so that demand is always met. Choosing poorly raises costs and carbon emissions, and the number of possible schedules grows exponentially with every added source and time slot. This is the unit-commitment problem, which is combinatorial and hard to scale.
 
-**Why it matters:** _Explain the impact or opportunity._
+**Why it matters:** The unit-commitment problem is NP-hard. Suboptimal dispatch schedules result in excessive operational costs and tons of avoidable carbon emissions globally. Quantum approximate optimization provides a scalable route to explore combinatorial configuration spaces for sustainable energy networks.
 
-**Track / Category:** _Online / Offline · Track 1 / Track 2 · <domain>_
+**Track / Category:** Track 6: Quantum Applications for Climate Change & Sustainability · Online Tier
 
 ---
 
@@ -81,11 +83,11 @@ Describe your solution. Keep it concrete: the core idea, the user flow, and
 the quantum/ML technique you are applying.
 -->
 
-**Solution:** _In 2–3 sentences, describe what you built._
+**Solution:** We formulate clean energy unit-commitment as a Quadratic Unconstrained Binary Optimization (QUBO) problem and solve it using the Quantum Approximate Optimization Algorithm (QAOA) in Qiskit. We benchmark QAOA against exact brute-force and greedy classical methods, test its robustness under a hardware noise model, and present the results in an interactive dashboard showing cost and CO₂ savings.
 
-**Key idea:** _The one-line technical summary of your approach._
+**Key idea:** Map multi-source power scheduling into an Ising Hamiltonian balancing demand penalty, operational cost, and CO₂ emissions, solved via parameterized QAOA circuits on Qiskit Aer with classical COBYLA feedback.
 
-**Why this works:** _How your approach addresses the problem statement._
+**Why this works:** QAOA harnesses quantum superposition and constructive interference across $2^{K \times T}$ possible schedules, directing probability mass toward low-emission, cost-effective configurations while avoiding exponential runtime barriers.
 
 ---
 
@@ -97,17 +99,17 @@ Walk through how it works. A simple pipeline diagram in text or Mermaid is ideal
 
 ```mermaid
 flowchart LR
-    A[Input Data] --> B[Preprocessing]
-    B --> C[Quantum Circuit / Model]
-    C --> D[Post-processing]
-    D --> E[Output]
+    A[Energy Profiles & Constraints] --> B[QUBO & Ising Mapping]
+    B --> C[QAOA Circuit in Qiskit]
+    C --> D[Classical Optimizer & Noise Model]
+    D --> E[Interactive Dashboard & Benchmarks]
 ```
 
-1. **Input** — _what data goes in and in what format_
-2. **Preprocessing** — _cleaning, feature extraction, encoding_
-3. **Quantum core** — _the circuit, ansatz, or algorithm used_
-4. **Post-processing** — _decoding, measurement, scoring_
-5. **Output** — _what the user finally gets_
+1. **Input** — Hourly power demand curve, intermittent solar availability, and multi-source characteristics: Solar (4kW, zero CO₂), Battery (3kW, zero CO₂), Grid (6kW), and Diesel backup (5kW).
+2. **Preprocessing** — Construct the QUBO objective matrix combining demand penalties ($\lambda \sum_t (\sum_i c_i x_{i,t} - d_t)^2$), generation costs, and carbon penalties, then map to an Ising Hamiltonian ($H_C = \sum J_{ij} Z_i Z_j + \sum h_i Z_i$).
+3. **Quantum core** — Parameterized QAOA ansatz with depth $p$ alternating problem cost unitaries $U_C(\gamma) = e^{-i\gamma H_C}$ and transverse mixer unitaries $U_M(\beta) = e^{-i\beta \sum X_i}$ implemented via Qiskit 1.x `SparsePauliOp`.
+4. **Post-processing** — Classical COBYLA parameter optimization loop evaluated on `AerSimulator` (noiseless statevector and hardware noise model with depolarizing and readout errors), followed by bitstring schedule decoding.
+5. **Output** — Optimal green dispatch schedule, comparative benchmark metrics against brute-force and greedy classical algorithms, and an interactive Streamlit dashboard.
 
 ---
 
@@ -115,11 +117,12 @@ flowchart LR
 
 | Layer | Technology |
 | :--- | :--- |
-| Language | Python 3.11+ |
-| Quantum SDK | Qiskit `>=1.0`, Qiskit Aer, Qiskit Runtime |
-| Optimisation | Qiskit Optimization / COBYLA / SPSA |
-| Simulation | AerSimulator (statevector / noisemodel) |
-| Environment | JupyterLab / VS Code, `venv` |
+| Language | Python 3.10+ |
+| Quantum SDK | Qiskit `>=1.0`, Qiskit Aer |
+| Optimisation | QAOA, SciPy COBYLA, Classical Solvers (Brute-force, Greedy) |
+| Simulation | AerSimulator (statevector / hardware noise model) |
+| Dashboard & UI | Streamlit, Plotly, Matplotlib |
+| Environment & Testing | Jupyter Notebook, Pytest, Git + GitHub |
 | Version control | Git + GitHub |
 
 ---
@@ -128,21 +131,35 @@ flowchart LR
 
 ```text
 vtu-hc-intellix-titans/
-├── README.md              # This file
+├── README.md              # Project documentation and submission details
 ├── requirements.txt       # Python dependencies
-├── pyproject.toml         # Project metadata (optional)
-├── .gitignore
+├── pyproject.toml         # Project metadata and build configuration
+├── .gitignore             # Git ignore patterns
+├── dashboard/             # Interactive Streamlit dashboard
+│   ├── app.py             # Streamlit web application
+│   └── plots.py           # Plotly interactive visualizations
 ├── notebooks/             # Jupyter notebooks for experiments
-│   └── exploration.ipynb
-├── src/
+│   ├── exploration.ipynb  # Step-by-step walkthrough & benchmarks
+│   └── qaoa_demo.ipynb    # Quantum circuit & QAOA demo
+├── src/                   # Core application source code
 │   ├── __init__.py
-│   ├── circuit.py         # Quantum circuit construction
-│   ├── optimizer.py       # Optimization loop
-│   └── main.py            # Entry point
-├── data/                  # Datasets (use Git LFS for large files)
+│   ├── circuit.py         # Quantum circuit construction & SparsePauliOp
+│   ├── optimizer.py       # QAOA optimization loop (COBYLA) & benchmarks
+│   ├── main.py            # CLI entry point for execution
+│   ├── problem.py         # QUBO formulation & Ising mapping
+│   ├── qaoa_solver.py     # QAOASolver implementation
+│   ├── classical_solvers.py # Exact brute-force & greedy baselines
+│   ├── noise_model.py     # Aer hardware noise simulation
+│   ├── co2_calculator.py  # Cost & CO₂ savings metrics calculator
+│   └── data_generator.py  # Synthetic daily energy demand profiles
+├── data/                  # Datasets
 ├── tests/                 # Unit tests
-│   └── test_circuit.py
-└── docs/                  # Notes, diagrams, reports
+│   ├── test_circuit.py    # Quantum circuit tests
+│   ├── test_problem.py    # QUBO & Ising tests
+│   ├── test_solvers.py    # Classical baseline solver tests
+│   └── test_co2.py        # Emission & cost calculation tests
+└── docs/                  # Technical notes and architecture documentation
+    └── algorithm_notes.md # Algorithm equations and references
 ```
 
 ---
@@ -151,7 +168,7 @@ vtu-hc-intellix-titans/
 
 ### Prerequisites
 
-- Python 3.11 or newer
+- Python 3.10 or newer
 - [Git](https://git-scm.com/downloads)
 - A GitHub account (you need collaborator access to this repo)
 
@@ -177,22 +194,32 @@ pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-### 4. Run
+### 4. Run the CLI Optimizer
 
 ```bash
-python -m src.main
+# Run default QAOA optimization with classical benchmarks
+python -m src.main --slots 3 --p 2 --compare
+
+# Run with hardware noise simulation
+python -m src.main --slots 3 --p 2 --noise --compare
 ```
 
-Or launch the notebook workflow:
+### 5. Launch the Interactive Dashboard
 
 ```bash
-jupyter lab
+streamlit run dashboard/app.py
 ```
 
-### 5. Run the tests
+### 6. Run the Jupyter Notebook
 
 ```bash
-pytest -q
+jupyter notebook notebooks/exploration.ipynb
+```
+
+### 7. Run the Unit Tests
+
+```bash
+pytest -v
 ```
 
 ---
@@ -268,13 +295,13 @@ git pull --rebase       # update your branch on top of main
 
 ## ✅ Submission Checklist
 
-- [ ] Repository created and **public**
+- [x] Repository created and configured
 - [ ] All team members added as **collaborators** and invitations accepted
-- [ ] `README.md` updated with project details, problem statement and solution
+- [x] `README.md` updated with project details, problem statement and solution
 - [ ] Team members listed under [Team Members](#-team-members-github-ids)
-- [ ] `requirements.txt` committed and project runs from a clean clone
-- [ ] Code pushed to `main` and the latest `main` builds successfully
-- [ ] Notebooks committed with **cleared outputs** (or use `nbstrip`)
+- [x] `requirements.txt` committed and project runs from a clean clone
+- [x] Code pushed to `main` and the latest `main` builds successfully
+- [x] Notebooks committed with **cleared outputs** (or use `nbstrip`)
 - [ ] `README` includes a demo screenshot / video link
 - [ ] Short project summary submitted on the hackathon portal
 
