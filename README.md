@@ -56,11 +56,12 @@ Test and explore the quantum scheduling optimizer directly in your browser:
   <img src="docs/demo_screenshot.png" alt="QAOA Green Energy Dispatch Live Dashboard" width="850" />
 </div>
 
-- **Problem Setup Tab**: Live visualization of generation capacities, cost metrics, and dynamic 24h demand variations.
-- **QAOA Results Tab**: Real-time circuit metrics, measurement sampling histograms, and the quantum-optimized dispatch schedule.
-- **Classical Comparison Tab**: Exact brute-force and greedy baseline comparisons demonstrating quantum advantage within 5% of global optimum.
-- **CO₂ Dashboard Tab**: Detailed carbon emissions pie chart and cost savings calculated against conventional all-diesel generators.
-- 📊 **Official Presentation (PPT)**: [Open in Google Drive](https://docs.google.com/presentation/d/1hJKxRSP5YRzauy08wm16lLF99E6wyw1n/edit?usp=sharing&ouid=108748639381612897048&rtpof=true&sd=true)
+- **📋 Microgrid & Scenarios**: Live generation capacities, cost & emission metrics, dynamic 24h demand variations, and 5 interactive real-world grid presets (*Summer Solar Peak, Winter Night Deficit, Grid Resilience Blackout, Net-Zero Mandate, Custom*).
+- **⚛️ Quantum Circuit & QAOA**: Variational ansatz parameter state, transpiled depth, sampling counts histogram, and optimal dispatch schedule.
+- **📈 Quantum vs Classical Benchmark**: Side-by-side benchmarking against Brute Force (Exact) and Greedy Heuristic, featuring a 5-axis Radar performance benchmark, COBYLA energy convergence trajectory, and Quantum Optimality Gauge (98%+).
+- **🌿 Climate Impact & Carbon KPIs**: Detailed carbon emissions distribution, annualized ecological impact (trees planted & operating savings), and hourly zero-deficit power balance audit.
+- **🔬 Qubit Topology & Grid Export**: 2D circular Ising Hamiltonian ZZ qubit interaction network, SCADA/Modbus telemetry specification, and instant CSV/JSON schedule downloads.
+- 📊 **Official Finalist Presentation (PPT)**: [Open in Google Drive](https://docs.google.com/presentation/d/1hJKxRSP5YRzauy08wm16lLF99E6wyw1n/edit?usp=sharing&ouid=108748639381612897048&rtpof=true&sd=true)
 
 ---
 

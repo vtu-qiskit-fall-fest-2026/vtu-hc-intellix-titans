@@ -231,7 +231,7 @@ class QAOASolver:
         try:
             # QAOAAnsatz expects a cost operator and mixer
             ansatz = QAOAAnsatz(cost_operator=self.cost_op, reps=self.p)
-            ansatz_bound = ansatz.decompose()
+            ansatz_bound = ansatz.decompose().decompose()
             self._circuit = ansatz_bound
             # Extract parameter vectors
             params = sorted(ansatz.parameters, key=lambda p: p.name)
@@ -374,10 +374,12 @@ class QAOASolver:
 
         best_energy = np.inf
         optimal_params = x0.copy()
+        energy_history: List[float] = []
 
         def objective(params: np.ndarray) -> float:
             nonlocal best_energy, optimal_params
             e = self._evaluate_energy(params, simulator)
+            energy_history.append(float(e))
             if e < best_energy:
                 best_energy = e
                 optimal_params = params.copy()
@@ -388,7 +390,7 @@ class QAOASolver:
                 objective,
                 x0,
                 method="COBYLA",
-                options={"maxiter": 500, "rhobeg": 0.5},
+                options={"maxiter": 100, "rhobeg": 0.5},
             )
             optimal_params = result.x
         else:
@@ -414,6 +416,7 @@ class QAOASolver:
             "schedule": schedule,
             "n_qubits": self.n_qubits,
             "runtime_s": time.time() - t0,
+            "energy_history": energy_history,
         }
 
     def solve_with_noise(self, noise_model: Optional[Any] = None) -> Dict[str, Any]:
@@ -447,10 +450,12 @@ class QAOASolver:
         x0 = np.random.uniform(0, np.pi, size=n_params)
         best_energy = np.inf
         optimal_params = x0.copy()
+        energy_history: List[float] = []
 
         def objective(params: np.ndarray) -> float:
             nonlocal best_energy, optimal_params
             e = self._evaluate_energy(params, simulator)
+            energy_history.append(float(e))
             if e < best_energy:
                 best_energy = e
                 optimal_params = params.copy()
@@ -482,6 +487,7 @@ class QAOASolver:
             "n_qubits": self.n_qubits,
             "runtime_s": time.time() - t0,
             "noisy": True,
+            "energy_history": energy_history,
         }
 
     # ------------------------------------------------------------------
