@@ -326,8 +326,9 @@ class QAOASolver:
             bound_qc_sv = bound_qc.copy()
             sv = Statevector(bound_qc_sv)
             probs = sv.probabilities_dict()
-            # Convert probabilities → pseudo-counts
-            counts = {k: max(1, round(v * self.shots)) for k, v in probs.items()}
+            # Convert probabilities → pseudo-counts (top 64 states to save memory and avoid slow rendering)
+            sorted_items = sorted(probs.items(), key=lambda item: item[1], reverse=True)[:64]
+            counts = {k: max(1, round(v * self.shots)) for k, v in sorted_items if v > 1e-6}
         else:
             meas_qc = bound_qc.copy()
             meas_qc.measure_all()
@@ -390,7 +391,7 @@ class QAOASolver:
                 objective,
                 x0,
                 method="COBYLA",
-                options={"maxiter": 100, "rhobeg": 0.5},
+                options={"maxiter": 35, "rhobeg": 0.5},
             )
             optimal_params = result.x
         else:

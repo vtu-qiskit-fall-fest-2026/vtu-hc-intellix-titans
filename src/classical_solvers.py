@@ -69,15 +69,24 @@ class BruteForceSolver:
         """
         t0 = time.time()
         n = self.qubo.params.n_vars
-        best_cost = np.inf
-        best_bits: np.ndarray = np.zeros(n, dtype=float)
 
-        for i in range(2 ** n):
-            bits = np.array([(i >> k) & 1 for k in range(n)], dtype=float)
-            cost = self.qubo.evaluate(bits)
-            if cost < best_cost:
-                best_cost = cost
-                best_bits = bits.copy()
+        if n <= 18:
+            # High-performance vectorized evaluation via NumPy
+            ints = np.arange(2 ** n, dtype=np.uint32)
+            X = ((ints[:, None] >> np.arange(n)) & 1).astype(np.float64)
+            costs = np.sum((X @ self.qubo.Q) * X, axis=1) + self.qubo.offset
+            best_idx = int(np.argmin(costs))
+            best_cost = float(costs[best_idx])
+            best_bits = X[best_idx]
+        else:
+            best_cost = np.inf
+            best_bits = np.zeros(n, dtype=float)
+            for i in range(2 ** n):
+                bits = np.array([(i >> k) & 1 for k in range(n)], dtype=float)
+                cost = self.qubo.evaluate(bits)
+                if cost < best_cost:
+                    best_cost = cost
+                    best_bits = bits.copy()
 
         # Convert to bitstring (Qiskit big-endian: qubit 0 at right)
         best_bitstring = "".join(str(int(b)) for b in reversed(best_bits))
